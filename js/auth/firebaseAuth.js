@@ -8,16 +8,6 @@ function validateEmail(email){
   return regex.test(String(email).toLowerCase());
 }
 
-function showMessage(message, divId){
-  var messageDiv=document.getElementById(divId);
-  messageDiv.style.display="block";
-  messageDiv.innerHTML=message;
-  messageDiv.style.opacity=1;
-  setTimeout(function(){
-      messageDiv.style.opacity=0;
-  },5000);
-}
-
 export class ManageAccount {
     async register(email, password, confirmPassword, name, lastname) {
       if(!validateEmail(email)){alert("Por favor, introduce un email. Ejemplo: user@gmail.com"); return;}
@@ -65,7 +55,7 @@ export class ManageAccount {
       if(password.length === 0){alert("Por favor, introduce una contraseña."); return;}
       signInWithEmailAndPassword(auth, email, password)
         .then((_) => {
-          window.location.href = "/html/login.html";
+          window.location.href = "/html/index.html";
           // Mostrar alerta de inicio de sesión exitoso
           alert("Has iniciado sesión correctamente. Serás redirigido a la página principal.");
         })
@@ -76,13 +66,23 @@ export class ManageAccount {
         });
     }
 /************************************************************/
-    signOut() {
+    logOut() {
       signOut(auth)
         .then((_) => {
-          window.location.href = "/index.html";
+          window.location.href = "/../index.html";
         })
         .catch((error) => {
           console.error("Error al cerrar sesión", error.message);
         });
     }
+
+    /********************************************************** */
   }
+
+/*   const logout = () => {
+    sessionStorage.removeItem('token')
+    window.location = '/index.html'
+  }
+
+  const logoutButton = document.querySelector("#logoutButton")
+  logoutButton.addEventListener('click', logout) */

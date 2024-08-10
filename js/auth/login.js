@@ -29,3 +29,9 @@ document.getElementById("form-create-account").addEventListener("submit", (event
 });
 
 console.log('Formulario de Registro');
+
+document.getElementById("logoutButton").addEventListener("click", (event) =>{
+  const account = new ManageAccount();
+  account.logOut();
+})
+
